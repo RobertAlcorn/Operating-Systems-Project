@@ -9,7 +9,9 @@ public class ProcessControlBlock {
 	int completionTime;
 	int waitTimefromLoad;
 	int parentProcessID;
-	int burstTime = 0;
+	int burstTime;
+	int timeRemaining;
+	int arrivalTime;
 		
 	//getters and setters will go here for all parameters
 	public int getID() {
@@ -34,6 +36,22 @@ public class ProcessControlBlock {
 	
 	public void setBurst(int burstTime) {
 		this.burstTime = burstTime;
+	}
+	
+	public int getRemaining() {
+		return timeRemaining;
+	}
+	
+	public void setRemaining(int timeRemaining) {
+		this.timeRemaining = timeRemaining;
+	}
+	
+	public int getArrival() {
+		return arrivalTime;
+	}
+	
+	public void setArrival(int arrivalTime) {
+		this.arrivalTime = arrivalTime;
 	}
 		
 	public String toString() {
