@@ -5,15 +5,48 @@ public class ProcessControlBlock {
 
 	int processID;
 	String processState;
-	int priority;
 	int completionTime;
-	int waitTimefromLoad;
 	int parentProcessID;
 	int burstTime;
 	int timeRemaining;
 	int arrivalTime;
+	int turnaroundTime;
+	int responseTime;
+	int waitingTime;
 		
-	//getters and setters will go here for all parameters
+	//getters and setters will go here for all parameters	
+	public int getWait() {
+		return waitingTime;
+	}
+	
+	public void setWait(int waitingTime) {
+		this.waitingTime = waitingTime;
+	}
+	
+	public int getResponse() {
+		return responseTime;
+	}
+	
+	public void setResponse(int responseTime) {
+		this.responseTime = responseTime;
+	}
+	
+	public int getCompletion() {
+		return completionTime;
+	}
+	
+	public void setCompletion(int completionTime) {
+		this.completionTime = completionTime;
+	}
+	
+	public int getTurnaround() {
+		return turnaroundTime;
+	}
+	
+	public void setTurnaround(int turnaroundTime) {
+		this.turnaroundTime = turnaroundTime;
+	}
+	
 	public int getID() {
 		return processID;
 	}
