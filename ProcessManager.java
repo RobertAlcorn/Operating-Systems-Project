@@ -9,6 +9,7 @@ public class ProcessManager {
 	//create and initialize variables
 	static ArrayList<ProcessControlBlock> readyQueue = new ArrayList<ProcessControlBlock>();
 	static ArrayList<ProcessControlBlock> history = new ArrayList<ProcessControlBlock>();
+	static ArrayList<JLabel> labels = new ArrayList<JLabel>();
 	static boolean isTrue = true;
 	static int processCount = 0;
 	static int pid = 1;
@@ -20,9 +21,12 @@ public class ProcessManager {
 		
 		//create a new GUI to display process information
 		JFrame frame = new JFrame("Process Manager");
+		JPanel panel = new JPanel();
+		frame.add(panel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    frame.setSize(1000,400);
 	    frame.setVisible(true);
+	    frame.setResizable(false);
 	    			
 		//10 processes will exist at a time so create the first initial 10 processes
 		for(int i = 0; i < 10; i++) {
@@ -45,13 +49,16 @@ public class ProcessManager {
 			processCount++;
 		}
 		
-		//add processes to GUI
-		for(int i = 0; i < 10; i++) {
-			
+		for(int i = 0; i < 10; i++) {			
+			String temp = Integer.toString(readyQueue.get(i).getID());
+			JLabel label = new JLabel(temp + "       ");
+			panel.add(label);			
+			labels.add(label);				
 		}
-		
+				
 		//will run indefinitely
 		while(isTrue) {
+						
 			//display current time
 			System.out.println("Time: " + time);
 									
@@ -68,6 +75,14 @@ public class ProcessManager {
 				
 				readyQueue.add(pcb);
 				System.out.println("Created new process with Process ID: " + pcb.getID() + "\tand Burst Time: " + pcb.getBurst());
+				
+				String temp2 = Integer.toString(readyQueue.get(9).getID());
+				JLabel label = new JLabel(temp2 + "       ");
+				panel.add(label);			
+				labels.add(label);
+				panel.repaint();
+				panel.revalidate();
+				
 				pid++;
 				processCount++;
 			}
@@ -76,7 +91,7 @@ public class ProcessManager {
 			if(index == 10) {
 				index = 0;
 			}
-			
+						
 			//set process states
 			for(int i = 0; i < 10; i++) {
 				if( i == index ) {
@@ -103,6 +118,10 @@ public class ProcessManager {
 				readyQueue.get(index).setState("terminated");				
 				history.add(readyQueue.get(index));
 				readyQueue.remove(index);
+				labels.remove(index);
+				panel.remove(index);
+				panel.repaint();
+				panel.revalidate();
 				processCount--;
 				time++;
 				Thread.sleep(1000);
