@@ -4,9 +4,6 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
 public class ProcessManagement {
 	
 	static ArrayList<ProcessControlBlock> readyQueue = new ArrayList<ProcessControlBlock>();	
@@ -49,7 +46,8 @@ public class ProcessManagement {
 				
 			//display current time
 			System.out.println("Time: " + time);
-				
+			
+			//if there are less than 10 processes create another one
 			if(processCount < 10) {
 				ProcessControlBlock pcb = new ProcessControlBlock();
 				int temp = (int) (Math.random() * 10) + 1;	
@@ -88,7 +86,12 @@ public class ProcessManagement {
 				readyQueue.get(index).setCompletion(time+1);
 				readyQueue.get(index).setWait(temp2);
 				readyQueue.get(index).setTurnaround(temp);
-				readyQueue.get(index).setState("terminated");				
+				readyQueue.get(index).setState("terminated");
+				System.out.println("\nProcess " + readyQueue.get(index).getID() + " final info: " );
+				System.out.println("Completion time: " + readyQueue.get(index).getCompletion());
+				System.out.println("Turnaround Time: " + readyQueue.get(index).getTurnaround());
+				System.out.println("Wait Time: " + readyQueue.get(index).getWait());
+				System.out.println("State: " + readyQueue.get(index).getState() + "\n");
 				readyQueue.remove(index);
 				processCount--;
 				time++;
@@ -99,14 +102,27 @@ public class ProcessManagement {
 				
 				readyQueue.get(index).setRemaining( timeLeft -1);
 				System.out.println("Process " + readyQueue.get(index).getID() + " has " + readyQueue.get(index).getRemaining() + " time remaining");
-				String temp = Integer.toString(readyQueue.get(index).getID());
-				String temp2 = readyQueue.get(index).getState();
-				int temp3 = readyQueue.get(index).getRemaining();
 				time++;
 				index++;
 				Thread.sleep(1500);
 			}
+			
+			if( avgWait.size() > 0 ) {
+				averageWait = (sum(avgWait)) / avgWait.size();
+				averageTurnaround = (sum(avgTurn)) / avgWait.size();
+				System.out.println("Average Wait: " + averageWait);
+				System.out.println("Average Turnaround: " + averageTurnaround);
+			}	
 		}			
-	}		
+	}	
+	
+	public static int sum(LinkedList<Integer> list) {
+	    int sum = 0;
+	    for (int i: list) {
+	        sum += i;
+	    }
+	    return sum;
+	}
+	
 }
 
