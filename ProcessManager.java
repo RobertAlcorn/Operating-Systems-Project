@@ -10,6 +10,7 @@ public class ProcessManager {
 	static ArrayList<ProcessControlBlock> readyQueue = new ArrayList<ProcessControlBlock>();
 	static ArrayList<ProcessControlBlock> history = new ArrayList<ProcessControlBlock>();
 	static ArrayList<JLabel> labels = new ArrayList<JLabel>();
+	static ArrayList<JLabel> labels2 = new ArrayList<JLabel>();
 	static boolean isTrue = true;
 	static int processCount = 0;
 	static int pid = 1;
@@ -49,11 +50,15 @@ public class ProcessManager {
 			processCount++;
 		}
 		
+		//display processes on GUI
 		for(int i = 0; i < 10; i++) {			
 			String temp = Integer.toString(readyQueue.get(i).getID());
-			JLabel label = new JLabel(temp + "       ");
-			panel.add(label);			
-			labels.add(label);				
+			String temp2 = readyQueue.get(i).getState();
+			int temp3 = readyQueue.get(i).getRemaining();
+			JLabel label = new JLabel("Process: " + temp + "   State: " + temp2 + "   Time Remaining: " + temp3);
+			panel.add(label);
+			labels.add(label);
+
 		}
 				
 		//will run indefinitely
@@ -76,8 +81,10 @@ public class ProcessManager {
 				readyQueue.add(pcb);
 				System.out.println("Created new process with Process ID: " + pcb.getID() + "\tand Burst Time: " + pcb.getBurst());
 				
-				String temp2 = Integer.toString(readyQueue.get(9).getID());
-				JLabel label = new JLabel(temp2 + "       ");
+				String temp0 = Integer.toString(readyQueue.get(9).getID());
+				String temp2 = readyQueue.get(9).getState();
+				int temp3 = readyQueue.get(9).getRemaining();
+				JLabel label = new JLabel("Process: " + temp0 + "   State: " + temp2 + "   Time Remaining: " + temp3);
 				panel.add(label);			
 				labels.add(label);
 				panel.repaint();
@@ -96,9 +103,28 @@ public class ProcessManager {
 			for(int i = 0; i < 10; i++) {
 				if( i == index ) {
 					readyQueue.get(i).setState("running");
+//					labels.remove(i);
+//					String temp = Integer.toString(readyQueue.get(i).getID());
+//					String temp2 = readyQueue.get(i).getState();
+//					int temp3 = readyQueue.get(i).getRemaining();
+//					JLabel label = new JLabel("Process: " + temp + "   State: " + temp2 + "   Time Remaining: " + temp3);
+//					panel.add(label);
+//					labels.add(label);
+//					panel.repaint();
+//					panel.revalidate();
+					
 				}
 				else {
 					readyQueue.get(i).setState("waiting");
+//					labels.remove(i);
+//					String temp = Integer.toString(readyQueue.get(i).getID());
+//					String temp2 = readyQueue.get(i).getState();
+//					int temp3 = readyQueue.get(i).getRemaining();
+//					JLabel label = new JLabel("Process: " + temp + "   State: " + temp2 + "   Time Remaining: " + temp3);
+//					panel.add(label);
+//					labels.add(label);
+//					panel.repaint();
+//					panel.revalidate();
 				}
 			}
 			
@@ -124,15 +150,22 @@ public class ProcessManager {
 				panel.revalidate();
 				processCount--;
 				time++;
-				Thread.sleep(1000);
+				Thread.sleep(1500);
 			}
 			//otherwise process isn't done yet 
 			else if( timeLeft > quantum ) {
 				readyQueue.get(index).setRemaining( timeLeft -1);
 				System.out.println("Process " + readyQueue.get(index).getID() + " has " + readyQueue.get(index).getRemaining() + " time remaining");
+				String temp = Integer.toString(readyQueue.get(index).getID());
+				String temp2 = readyQueue.get(index).getState();
+				int temp3 = readyQueue.get(index).getRemaining();
+				//JLabel label = new JLabel("Process: " + temp + "   State: " + temp2 + "   Time Remaining: " + temp3);
+				labels.get(index).setText("Process: " + temp + "   State: " + temp2 + "   Time Remaining: " + temp3);
+				panel.repaint();
+				panel.revalidate();
 				time++;
 				index++;
-				Thread.sleep(1000);
+				Thread.sleep(1500);
 			}		
 		}
 	}
