@@ -2,10 +2,13 @@
 //12-2-2019
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class ProcessMain {
 	
 	static ArrayList<ProcessControlBlock> readyQueue = new ArrayList<ProcessControlBlock>();
+	static LinkedList<Integer> avgWait = new LinkedList<Integer>();
+	static LinkedList<Integer> avgTurn = new LinkedList<Integer>();	
 	static boolean isTrue = true;
 	static int processCount = 0;
 	static int pid = 1;
@@ -57,15 +60,32 @@ public class ProcessMain {
 				
 				if(tempProc.getRemaining() == 0) {
 					System.out.println("Process " + tempID + " completed at time " + time);
+					int temp1 = time - readyQueue.get(index).getArrival();
+					int temp2 = temp1 - readyQueue.get(index).getBurst() + 1;
+					avgWait.add(temp2);
+					avgTurn.add(temp1);
 					readyQueue.remove(index);
 					processCount--;
 				}
-				index++;
-				
+				index++;				
 			}
+			
+			if( avgWait.size() > 0 ) {
+				averageWait = (sum(avgWait)) / avgWait.size();
+				averageTurnaround = (sum(avgTurn)) / avgWait.size();
+				System.out.println("Average Wait Time: " + averageWait + "   Average Turnaround Time: " + averageTurnaround);
+			}	
 			
 			Thread.sleep(1500);
 			time++;
 		}
 	}
+	
+	public static int sum(LinkedList<Integer> list) {
+		int sum = 0;
+		for (int i: list) {
+				sum += i;
+		}
+		return sum;
+	}				  	
 }
