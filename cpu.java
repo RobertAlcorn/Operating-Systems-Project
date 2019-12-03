@@ -1,7 +1,7 @@
 //Stephen McGovern
 //11-29-2019
 
-import java.util.Stack;
+//import java.util.Stack;
 
 
 public class cpu {
@@ -12,12 +12,14 @@ public class cpu {
 	static int programCounter;
 	static int CIR;
 	static int accumulator;
+    static int programCounterCtr = 0;
 
-	static Stack<int> SystemCallStack = new Stack<>();
+	//static Stack<int> SystemCallStack = new Stack<>();
 	static Instruction[] memoryAddress = new Instruction[256];
 
 	public static void main(String[] args) {
 
+		
 		
 
 
@@ -27,22 +29,25 @@ public class cpu {
 	public static void fetch(ProcessControlBlock PCB){
 
 		//Program Counter holds instruction address (array index)
-		programCounter = PCB.getInstructionPtr();
+		programCounter = PCB.getInstructionPtr() + programCounterCtr;
 
 		//Memory Address Register copies that same address (array index)
 		MAR = programCounter;
 
 		//Data pointed to by array index is copied into Memory Data Register (array index value)
-		MAR = MDR; 
+		MDR =ProcessMain.getMemory(MAR);
 
 		//Data held in MDR is copied to Current Instruction Register (CIR) (array index value)
 		CIR = MDR;
+
+		//Increment PC by 1 to get next address loaded
+		programCounterCtr++;
 
 	}
 
 
 
-	public static void execute(String instruction, int operand1, int operand2){
+	public static void execute(String instruction, int operand1){
 
 		//List of operands we need to handle 
 		//Data Movement - LOAD / STORE / MOVE
@@ -71,22 +76,22 @@ public class cpu {
 
 	}
 
-    public static void interrupt(){
-        //Step 1 - Suspend Execute
+    // public static void interrupt(){
+    //     //Step 1 - Suspend Execute
 
 
-        //Step 2 - Push MAR value onto system call stack
-        SystemCallStack.push(MAR.toString(int));
+    //     //Step 2 - Push MAR value onto system call stack
+    //     SystemCallStack.push(MAR.toString(int));
 
-        //Step 3 - Load Program Counter with address of
-        //the current interrupt handler
-        //This step needs to be implemented in a different way
-
-
-        MAR =  SystemCallStack.pop();
+    //     //Step 3 - Load Program Counter with address of
+    //     //the current interrupt handler
+    //     //This step needs to be implemented in a different way
 
 
-    }
+    //     MAR =  SystemCallStack.pop();
+
+
+    // }
 
 	public static void ADD(int operand){
 		accumulator += operand;
@@ -96,7 +101,7 @@ public class cpu {
 	}
 	public static void STORE(int operand){
 		MDR = accumulator;
-		setMemory(operand, MDR);
+		ProcessMain.setMemory(operand, MDR);
 	}
 	public static void LOAD(int operand){
 		accumulator = operand;

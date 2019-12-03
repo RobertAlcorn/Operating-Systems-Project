@@ -4,6 +4,8 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
 import javax.swing.*;
+import java.util.Random;
+import java.util.stream.IntStream;
 
 public class ProcessMain {
 	
@@ -19,6 +21,7 @@ public class ProcessMain {
 	static int index = 0;
 	static int averageWait = 0;
 	static int averageTurnaround = 0;
+	static int[] operandArray = new Random().ints(100, 0, 100).toArray();
 	
 	public static void main(String[] args) throws InterruptedException {
 		
@@ -165,5 +168,13 @@ public class ProcessMain {
 				sum += i;
 		}
 		return sum;
-	}				  	
+	}	
+	
+	public static void setMemory(int address, int operand){
+		operandArray[address] = operand;
+	}
+
+	public static int getMemory(int address){
+		return operandArray[address];
+	}
 }
