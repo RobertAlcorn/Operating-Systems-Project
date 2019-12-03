@@ -1,0 +1,229 @@
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <style type="text/css">
+      @import url("HomePage.css");
+​
+  </style>
+  <script src= 
+  "https://code.jquery.com/jquery-1.12.4.min.js"> 
+      </script> 
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+​
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>Contact Us - ClubRant</title>
+
+    <script language="JavaScript">               
+        var frmvalidator  = new Validator("contactform");               
+        frmvalidator.addValidation("name","req","Please provide your name");               
+        frmvalidator.addValidation("email","req","Please provide your email");             
+        frmvalidator.addValidation("email","email",               
+        "Please enter a valid email address");                
+    </script>
+
+    <script language = "JavaScript">
+        function sendEmail(){
+
+        }
+    </script> 
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+​
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+​
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+    
+    <div class="topnav">
+      <a href="index.html">Home</a>
+      <a href="Search.html">Clubs</a>
+      
+      <a href="AboutUs.html">About Us</a>
+      <a class="active" href="ContactUs.html">Contact</a>
+    
+      <div class="login-container">
+        
+        <form action="/action_page.php">
+          <input type="text" placeholder="Username" name="username">
+          <input type="text" placeholder="Password" name="psw">
+          <button type="submit">Login</button>
+          <a href="register.html">Register</a>
+        </form>
+        
+      </div>
+    </div>
+    
+    
+    <div class="container">
+        <div style="text-align:center">
+          <h2>Contact Us</h2>
+          <p>Swing by for a cup of coffee, or leave us a message:</p>
+        </div>
+        <div class="row">
+          <div class="column">
+            <img src="contactus.JPG" style="width:100%">
+          </div>
+          <div class="column">
+            <form action="/action_page.php">
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" name="firstname" placeholder="Your name..">
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+              <label for="country">Country</label>
+              <select id="country" name="country">
+                <option value="australia">Australia</option>
+                <option value="canada">Canada</option>
+                <option value="usa">USA</option>
+              </select><br>
+              <label for="lname">Reason</label><br>
+              <style type="text/css">
+              .hidden{
+                  display:none;
+              }
+              .unhidden{
+                  display: block;
+              }
+              .selectt { 
+             
+            padding: 10px; 
+            display: none; 
+            margin-top: 30px; 
+             
+            background:#f2f2f2 
+        } 
+          
+        
+              </style>
+              <script type="text/javascript">
+                
+            $(document).ready(function() { 
+                $('input[type="radio"]').click(function() { 
+                    var inputValue = $(this).attr("value"); 
+                    var targetBox = $("." + inputValue); 
+                    $(".selectt").not(targetBox).hide(); 
+                    $(targetBox).show(); 
+                }); 
+            }); 
+        </script> 
+              </script>
+              <form method = "get" action = "mailto: rob_alcorn@yahoo.com" enctype = "text/plain">
+                  <input type="radio" name= "reason" value ="NewClub"> New Club
+                  <input type="radio" name= "reason" value ="Bug"> Bug
+                  <input type="radio" name= "reason" value ="Other"> Other
+
+                  <div class="NewClub selectt" id="about">
+                      <div class="content3">
+                            <label for="fname">Club Name</label>
+                            <input type="text" id="fname" name="firstname" placeholder="Your name..">
+                            <label for="subject">Description</label>
+                            <textarea id="subject" name="subject" placeholder="Write something.." style="height:170px"></textarea>
+                      </div>
+                      
+                  </div>
+                  <input type = "submit" value = "submit">
+                </form>
+                <form method = "get" action = "mailto: rob_alcorn@yahoo.com" enctype = "text/plain">
+                    Subject:
+                    <input name="subject" type="text"/>
+                    Message:
+                    <textarea name="body"></textarea>
+                    <input type = "submit" value = "submit">
+
+                </form>
+                
+            </div>
+            </div>
+        </div>
+         
+​
+        
+        
+        <div id="pageBottom">
+        
+            <h3 id=subText>Find the highest rated clubs at TU</h3><br>
+            <!-- the link to google is a placeholder for now -->
+            
+                <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+                <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+                <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                <!------ Include the above in your HEAD tag ---------->
+                
+                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+                <div class="container">
+                    <br/>
+                  <div class="row justify-content-center">
+                                        <div class="col-12 col-md-10 col-lg-8">
+                                            <form class="card card-sm">
+                                                <div class="card-body row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                        <i class="fas fa-search h4 text-body"></i>
+                                                    </div>
+                                                    <!--end of col-->
+                                                    <div class="col">
+                                                        <input id="searchBox" class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search topics or keywords">
+                                                    </div>
+                                                    <!--end of col-->
+                                                    <div class="col-auto">
+                                                        <button class="btn btn-lg btn-success" type="submit">Search</button>
+                                                    </div>
+                                                    <!--end of col-->
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <!--end of col-->
+                                    </div>
+                </div>
+            
+            
+        
+        </div>
+        <script src="MainPage.js"></script>
+            <!-- Start of Site Search 360 Scripts -->
+<script type="text/javascript">
+    var ss360Config = {
+        siteId: "club-rant.herokuapp.com",
+        searchBox: {
+            selector: "#searchBox"
+        }
+    }
+    </script>
+    <script type="module" src="https://cdn.sitesearch360.com/sitesearch360-v12.mjs"></script>
+    <script nomodule async src="https://cdn.sitesearch360.com/sitesearch360-v12.min.js"></script>
+    <!-- End of Site Search 360 Scripts -->
+          
+        
+  </body>
+</html>
