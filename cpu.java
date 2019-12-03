@@ -47,7 +47,7 @@ public class cpu {
 
 
 
-	public static void execute(String instruction, int operand1){
+	public static void execute(Instruction currentInstruction){
 
 		//List of operands we need to handle 
 		//Data Movement - LOAD / STORE / MOVE
@@ -57,6 +57,8 @@ public class cpu {
 		//Branch - JUMP / JZ / JNZ - Alters Program Counter -- Could Implement
 		//Procedure Call - CALL / RETURN -- Very Difficult
 		//Other - NOP (do nothing) / EI (enable interrupt) -- Could implement
+		String instruction = currentInstruction.instruction;
+		int operand1 = currentInstruction.operand1;
 
 		if (instruction == "LOAD"){
 			LOAD(operand1);
