@@ -15,8 +15,7 @@ public class Instruction{
     }
 
     public int getOperand(){
-       
-            return operand1;
+        return operand1;
     }
 
     public void setOperand1(int num){

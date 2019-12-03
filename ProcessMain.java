@@ -21,6 +21,7 @@ public class ProcessMain {
 	static int averageWait = 0;
 	static int averageTurnaround = 0;
 	static int[] operandArray = new Random().ints(100, 0, 100).toArray();
+	static int totalInstruction = 0;
 	
 	public static void main(String[] args) throws InterruptedException {
 		
@@ -69,9 +70,9 @@ public class ProcessMain {
 			if( temp == 1 ) {
 				//create new process control block class 
 				ProcessControlBlock pcb = new ProcessControlBlock();
-				int temp2 = (int) (Math.random() * 10) + 1;	
+				int temp2 = (int) (Math.random() * 10) + 3;	
                 int numInstruction = temp2;
-                int totalInstruction =+ temp2;
+                totalInstruction = totalInstruction + temp2;
                 int ctrInstruction = 0;
 						
 				//set burst time, process id, and process state
@@ -88,26 +89,28 @@ public class ProcessMain {
 
                 memoryList.add(loadInstruction);
 
-                while (numInstruction - 2 > 0){
-                    int randBool = (int) (Math.random() * 2) + 1;
+                for (int x = 0; x < totalInstruction - 2; x++){
+                    int randBool = (int) (Math.random() * 3) + 1;
                     ctrInstruction++;
 
                     if (randBool == 1){
-                        Instruction instructBlock = new Instruction("ADD", totalInstruction + ctrInstruction);
+                        Instruction instructBlock = new Instruction("ADD", pcb.getInstructionPtr() + pcb.getInstructionCtr());
                         
                         memoryList.add(instructBlock);
                     }
                     else if (randBool == 2){
-                        Instruction instructBlock = new Instruction("SUB", totalInstruction + ctrInstruction);
+                        Instruction instructBlock = new Instruction("SUB", pcb.getInstructionPtr() + pcb.getInstructionCtr());
                         memoryList.add(instructBlock);
                     }
-
                     numInstruction--;
                     
                 }
 
-                Instruction storeInstruction = new Instruction("STORE", totalInstruction + ctrInstruction + 1);
-                memoryList.add(storeInstruction);
+                Instruction storeInstruction = new Instruction("STORE", pcb.getInstructionPtr() + pcb.getInstructionCtr());
+				memoryList.add(storeInstruction);
+				
+				
+				System.out.println("Total instructions: " +totalInstruction);
 						
 				//add process control block to list of pcb objects
 				readyQueue.add(pcb);

@@ -17,17 +17,13 @@ public class cpu {
 
 	public static void main(String[] args) {
 
-		
-		
-
-
 	}
 
 
 	public static void fetch(ProcessControlBlock PCB){
 
 		//Program Counter holds instruction address (array index)
-		programCounter = PCB.getInstructionPtr() + programCounterCtr;
+		programCounter = PCB.getInstructionPtr() + PCB.getInstructionCtr();
 
 		//Memory Address Register copies that same address (array index)
 		MAR = programCounter;
@@ -39,9 +35,10 @@ public class cpu {
 		CIR = MDR;
 
 		//Increment PC by 1 to get next address loaded
-		programCounterCtr++;
+		PCB.incrementInstructionCtr();
 
-		System.out.println("Fetch ran");
+		System.out.println("Fetch ran: PC = " + programCounter + " PCB InstructionCtr::" + PCB.getInstructionCtr() + " PCB InstructionPtr::" + PCB.getInstructionPtr());
+		System.out.println("MAR = " + MAR );
 
 	}
 
@@ -68,7 +65,7 @@ public class cpu {
 			STORE(operand1);
 		}
 
-		System.out.println("Execution ran");
+		System.out.println("Execution ran: instruction = " + instruction + operand1);
 
 	}
 	public static void ADD(int operand){

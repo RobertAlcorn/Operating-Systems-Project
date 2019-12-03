@@ -14,6 +14,7 @@ public class ProcessControlBlock {
 	int responseTime;
 	int waitingTime;
 	int instructionPtr;
+	int instructionCtr;
 		
 	//getters and setters will go here for all parameters	
 	public int getWait() {
@@ -94,6 +95,13 @@ public class ProcessControlBlock {
 
 	public int getInstructionPtr(){
 		return instructionPtr;
+	}
+	public int getInstructionCtr(){
+		instructionCtr++;
+		return instructionCtr;
+	}
+	public void incrementInstructionCtr(){
+		instructionCtr++;
 	}
 		
 	public String toString() {
