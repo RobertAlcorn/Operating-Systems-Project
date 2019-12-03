@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import javax.swing.*;
 import java.util.Random;
-import java.util.stream.IntStream;
 
 public class ProcessMain {
 	
@@ -74,8 +73,6 @@ public class ProcessMain {
                 int numInstruction = temp2;
                 int totalInstruction =+ temp2;
                 int ctrInstruction = 0;
-                //random ints for instruction construction
-                int temp3 = (int) (Math.random() * 3);
 						
 				//set burst time, process id, and process state
 				pcb.setID(pid);
@@ -117,6 +114,7 @@ public class ProcessMain {
 				System.out.println("Created new process with Process ID: " + pcb.getID() + "\tand Burst Time: " + pcb.getBurst());
 				pid++;
 				processCount++;
+				
 			}
 			
 			//if the index gets higher than the ready queue size then reset it
@@ -135,6 +133,7 @@ public class ProcessMain {
 				tempProc.setRemaining(tempTime);
 				System.out.println("Process " + tempID + " has time remaining: " + tempTime);
 				
+				
 				if(tempProc.getRemaining() == 0) {
 					System.out.println("Process " + tempID + " completed at time " + time);
 					int temp1 = time - readyQueue.get(index).getArrival();
@@ -144,6 +143,12 @@ public class ProcessMain {
 					readyQueue.remove(index);
 					processCount--;
 				}
+				else{
+				//Running instructions
+				cpu.fetch(tempProc);
+				cpu.execute(memoryList.get(index));
+				}
+
 				index++;				
 			}
 			
@@ -152,7 +157,6 @@ public class ProcessMain {
 				averageTurnaround = (sum(avgTurn)) / avgWait.size();
 				System.out.println("Average Wait Time: " + averageWait + "   Average Turnaround Time: " + averageTurnaround);				
 			}	
-			
 			Thread.sleep(1000);
 			time++;
 			

@@ -1,4 +1,3 @@
-//import java.util.Random;
 
 public class Instruction{
 
@@ -13,22 +12,6 @@ public class Instruction{
     
 
     public static void main(){
-        //Random rand = new Random();
-
-        // int randInt1 = rand.nextInt(10);
-        // int randInt2 = rand.nextInt(10);
-        // int randBool = rand.nextInt(2);
-        
-
-        // if (randBool == 1){
-        //     setOperand1(randInt1);
-        //     setInstruction("ADD");
-        // }
-        // else if (randBool == 2){
-        //     setOperand1(randInt1);
-        //     setInstruction("SUB")
-        //
-
     }
 
     public int getOperand(){
