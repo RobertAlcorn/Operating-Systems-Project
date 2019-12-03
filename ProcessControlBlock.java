@@ -13,7 +13,7 @@ public class ProcessControlBlock {
 	int turnaroundTime;
 	int responseTime;
 	int waitingTime;
-	int instructionPointer;
+	int instructionPtr;
 		
 	//getters and setters will go here for all parameters	
 	public int getWait() {
@@ -87,13 +87,13 @@ public class ProcessControlBlock {
 	public void setArrival(int arrivalTime) {
 		this.arrivalTime = arrivalTime;
 	}
-
-	public void setInstructionPointer(int instructionPointer){
-		this.instructionPointer = instructionPointer;
-	}
 	
-	public int getInstructionPointer() {
-		return instructionPointer;
+	public void setInstructionPtr(int instructionPtr){
+		this.instructionPtr = instructionPtr;
+	}
+
+	public int getInstructionPtr(){
+		return instructionPtr;
 	}
 		
 	public String toString() {

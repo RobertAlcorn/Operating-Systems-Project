@@ -1,13 +1,22 @@
-import java.util.String;
 import java.util.Random;
 
-public class Instruction(string s, int i, int j) extends ProcessControlBlock{
+public class Instruction{
+
     //Holds instruction value and operand value
-    string instruction = s;
+    String instruction;
+    int operand1;
+    int operand2;
+
+    public Instruction(String s, int i, int j){
+    String instruction = s;
     int operand1 = i;
     int operand2 = j;
-
-
+    }
+    
+    public Instruction(String s, int i){
+    String instruction = s;
+    int operand1 = i;
+    }
 
     public static void main(){
         Random rand = new Random();
@@ -34,7 +43,7 @@ public class Instruction(string s, int i, int j) extends ProcessControlBlock{
 
     }
 
-    public static int getOperand(x){
+    public int getOperand(int x){
         if (x == 1){
             return operand1;
         }
@@ -46,19 +55,19 @@ public class Instruction(string s, int i, int j) extends ProcessControlBlock{
         }
     }
 
-    public static void setOperand1(int num){
+    public void setOperand1(int num){
         operand1 = num;
     }
 
-    public static void setOperand2(int num){
+    public void setOperand2(int num){
         operand2 = num;
     }
 
-    public static string getInstruction(){
+    public String getInstruction(){
         return instruction;
     }
 
-    public static void setInstruction(string s){
+    public void setInstruction(String s){
         instruction = s;
     }
 
